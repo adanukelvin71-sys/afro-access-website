@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign Up | Afro Access GH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main page-hero">
+        <div class="navbar">
+            <div class="icon"><a href="index.html"><img src="afroaccesslogo.jpg.jpg" alt="Afro Access GH logo" class="logo"></a></div>
+        </div>
+        <h1 class="page-title">Create your account</h1>
+    </header>
+
+    <main class="page">
+        <form id="signupForm" class="contact-form" style="max-width:480px">
+            <label for="name">Full name</label>
+            <input id="name" type="text" required>
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" required>
+            <label for="address">Address</label>
+            <input id="address" type="text">
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+            <label for="password">Password (at least 6 characters)</label>
+            <input id="password" type="password" minlength="6" required>
+            <button type="submit">Sign up</button>
+            <p id="msg" style="color:#ff8a8a"></p>
+            <p>Already have an account? <a href="login.html" style="color:#a9c93a">Log in</a></p>
+        </form>
+    </main>
+
+    <script type="module">
+        import { auth, db } from "./firebase.js";
+        import { createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { doc, setDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        document.getElementById("signupForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msg = document.getElementById("msg");
+            msg.textContent = "";
+            try {
+                const cred = await createUserWithEmailAndPassword(
+                    auth,
+                    document.getElementById("email").value,
+                    document.getElementById("password").value
+                );
+                await setDoc(doc(db, "customers", cred.user.uid), {
+                    name: document.getElementById("name").value,
+                    phone: document.getElementById("phone").value,
+                    address: document.getElementById("address").value,
+                    email: cred.user.email,
+                    createdAt: serverTimestamp()
+                });
+                window.location.href = "profile.html";
+            } catch (err) {
+                msg.textContent = err.message;
+            }
+        });
+    </script>
+</body>
+</html>

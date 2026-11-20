@@ -1,0 +1,35 @@
+<section>
+  <h2 id="catTitle"></h2>
+  <div id="productList" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;"></div>
+</section>
+
+<script>
+  const products = {
+    food: [
+      { name: "Chilled Asana Beverage with Bread Sandwich", price: "GHS 30", img: "images/food1.jpg" },
+      { name: "Jollof Rice and Grilled Chicken", price: "GHS 45", img: "images/food2.jpg" },
+      { name: "Fried Plantains and Beans", price: "GHS 30", img: "images/food3.jpg" },
+      { name: "Chilled Bukina Beverage", price: "GHS 25", img: "images/food4.jpg" },
+      { name: "Waakye and Fried Chicken", price: "GHS 40", img: "images/food5.jpg" }
+    ],
+    electronics: [
+      { name: "Tecno Phone", price: "GHS 2000", img: "images/electronics1.jpg" }
+    ],
+    clothes: [
+      { name: "Affordable Luxury Bag", price: "GHS 0", img: "images/clothes1.jpg" }
+    ]
+  };
+
+  const cat = new URLSearchParams(location.search).get("cat") || "food";
+  document.getElementById("catTitle").textContent =
+    cat.charAt(0).toUpperCase() + cat.slice(1);
+
+  document.getElementById("productList").innerHTML =
+    (products[cat] || []).map(p => `
+      <div class="card">
+        <img src="${p.img}" alt="${p.name}" style="width:100%;border-radius:8px;">
+        <h3>${p.name}</h3>
+        <p>${p.price}</p>
+        <a href="contact.html" class="cn">Enquire</a>
+      </div>`).join("");
+</script>

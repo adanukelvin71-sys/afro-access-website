@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log In | Afro Access GH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main page-hero">
+        <div class="navbar">
+            <div class="icon"><a href="index.html"><img src="afroaccesslogo.jpg" alt="Afro Access GH logo" class="logo"></a></div>
+        </div>
+        <h1 class="page-title">Log in</h1>
+    </header>
+
+    <main class="page">
+        <form id="loginForm" class="contact-form" style="max-width:480px">
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+            <label for="password">Password</label>
+            <input id="password" type="password" required>
+            <p id="msg" style="color:#ff8a8a"></p>
+            <button type="submit">Log in</button>
+            <p><a href="forgot.html" style="color:#a9c93a">Forgot password?</a></p>
+            <p>New here? <a href="signup.html" style="color:#a9c93a">Create an account</a></p>
+        </form>
+    </main>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        document.getElementById("loginForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msg = document.getElementById("msg");
+            msg.textContent = "";
+            try {
+                await signInWithEmailAndPassword(
+                    auth,
+                    document.getElementById("email").value,
+                    document.getElementById("password").value
+                );
+                window.location.href = "profile.html";
+            } catch (err) {
+                console.error(err);
+                msg.textContent = err.code || err.message;
+            }
+        });
+    </script>
+</body>
+</html>

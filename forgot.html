@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forgot Password | Afro Access GH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main page-hero">
+        <div class="navbar">
+            <div class="icon"><a href="index.html"><img src="afroaccesslogo.jpg" alt="Afro Access GH logo" class="logo"></a></div>
+        </div>
+        <h1 class="page-title">Reset your password</h1>
+    </header>
+
+    <main class="page">
+        <form id="forgotForm" class="contact-form" style="max-width:480px">
+            <label for="email">Enter the email you signed up with</label>
+            <input id="email" type="email" required>
+            <button type="submit">Send reset link</button>
+            <p id="msg"></p>
+            <p><a href="login.html" style="color:#a9c93a">Back to log in</a></p>
+        </form>
+    </main>
+
+    <script type="module">
+        import { auth } from "./firebase.js";
+        import { sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+        document.getElementById("forgotForm").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msg = document.getElementById("msg");
+            msg.style.color = "#e8e4dc";
+            msg.textContent = "";
+            try {
+                await sendPasswordResetEmail(auth, document.getElementById("email").value);
+            } catch (err) {
+                // Show the same message either way, so nobody can use this form to check which emails have accounts.
+            }
+            msg.textContent = "If an account exists for that email, a reset link has been sent. Check your inbox and spam folder.";
+        });
+    </script>
+</body>
+</html>

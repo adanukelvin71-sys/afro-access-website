@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Profile | Afro Access GH</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main page-hero">
+        <div class="navbar">
+            <div class="icon"><img src="afroaccesslogo.jpg" alt="Afro Access GH logo" class="logo"></div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="about.html">ABOUT</a></li>
+                    <li><a href="services.html">SERVICES</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="profile.html" class="active">PROFILE</a></li>
+                </ul>
+            </nav>
+        </div>
+        <h1 class="page-title">My Profile</h1>
+    </header>
+
+    <main class="page">
+        <section>
+            <h2 id="welcome">Loading...</h2>
+            <p>Email: <span id="pEmail"></span></p>
+            <p>Phone: <span id="pPhone"></span></p>
+            <p>Address: <span id="pAddress"></span></p>
+            <button id="logout" class="cn" style="border:none;cursor:pointer;margin-top:10px">Log out</button>
+        </section>
+    </main>
+
+    <script type="module">
+        import { auth, db } from "./firebase.js";
+        import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+        onAuthStateChanged(auth, async (user) => {
+            if (!user) { window.location.href = "login.html"; return; }
+            const snap = await getDoc(doc(db, "customers", user.uid));
+            const d = snap.exists() ? snap.data() : {};
+            document.getElementById("welcome").textContent = "Welcome, " + (d.name || "customer");
+            document.getElementById("pEmail").textContent = user.email;
+            document.getElementById("pPhone").textContent = d.phone || "-";
+            document.getElementById("pAddress").textContent = d.address || "-";
+        });
+
+        document.getElementById("logout").addEventListener("click", async () => {
+            await signOut(auth);
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

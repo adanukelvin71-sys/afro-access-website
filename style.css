@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    background: #14110d;
+    color: #fff;
+}
+
+/* ---------- HERO ---------- */
+.main {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url("afroaccessbackground.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar {
+    width: 100%;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 10px 30px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0));
+}
+
+.icon { flex: 0 0 auto; }
+
+.logo {
+    height: 60px;
+    width: auto;
+    display: block;
+    border-radius: 35%;
+}
+
+.menu { flex: 1 1 auto; }
+
+ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+    gap: 30px;
+}
+
+ul li {
+    list-style: none;
+    font-size: 18px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+ul li a:hover,
+ul li a.active {
+    color: #7b9a0d;
+}
+
+/* ---------- SEARCH ---------- */
+.search {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: stretch;
+}
+
+.srch {
+    font-family: "Times New Roman", serif;
+    font-size: 17px;
+    width: 170px;
+    height: 42px;
+    background: rgba(0, 0, 0, 0.35);
+    border: 1px solid #fff;
+    border-right: none;
+    color: #fff;
+    padding: 10px;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.srch::placeholder { color: #ddd; }
+
+.btn {
+    width: 100px;
+    height: 42px;
+    background: #7b9a0d;
+    border: 2px solid #7b9a0d;
+    color: #fff;
+    font-size: 17px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover { background: #6a8710; }
+
+.btn:focus,
+.srch:focus { outline: none; }
+
+.btn:focus-visible,
+.srch:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* ---------- WELCOME SECTION ---------- */
+.content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 70px 30px 80px;
+    text-align: center;
+}
+
+.content h1 {
+    font-family: "Times New Roman", serif;
+    font-size: 44px;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.content h1 span { color: #7b9a0d; }
+
+.par {
+    max-width: 65ch;
+    margin: 0 auto 30px;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #e8e4dc;
+}
+
+.cn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #7b9a0d;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+
+.cn:hover { background: #6a8710; }
+
+/* ---------- NEWSLETTER ---------- */
+.form {
+    margin-top: 60px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+}
+
+.form h2 {
+    font-family: "Times New Roman", serif;
+    font-size: 26px;
+    margin-bottom: 18px;
+}
+
+.form-row {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.form-row input {
+    flex: 1 1 280px;
+    max-width: 420px;
+    height: 44px;
+    padding: 10px 14px;
+    font-size: 16px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: transparent;
+    color: #fff;
+}
+
+.form-row input::placeholder { color: #ccc; }
+
+.btnn {
+    height: 44px;
+    padding: 0 26px;
+    background: #7b9a0d;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btnn:hover { background: #6a8710; }
+
+/* ================= INNER PAGES ================= */
+.main.page-hero {
+    height: auto;
+    min-height: 0;
+    background: #0f0d0a;
+    border-bottom: 3px solid #7b9a0d;
+}
+
+.page-title {
+    padding: 40px 30px 50px;
+    text-align: center;
+    font-family: "Times New Roman", serif;
+    font-size: 42px;
+}
+
+.page {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 30px 80px;
+}
+
+.page h2 {
+    font-family: "Times New Roman", serif;
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+.page p {
+    max-width: 70ch;
+    font-size: 18px;
+    line-height: 1.7;
+    color: #e8e4dc;
+    margin-bottom: 18px;
+}
+
+.page section + section { margin-top: 50px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px;
+    margin-top: 10px;
+}
+
+.card {
+    padding: 26px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 8px;
+}
+
+.card h3 {
+    font-family: "Times New Roman", serif;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.card p {
+    font-size: 16px;
+    margin-bottom: 18px;
+}
+
+.contact-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.contact-form label {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 12px 14px;
+    font-size: 16px;
+    font-family: inherit;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background: transparent;
+    color: #fff;
+}
+
+.contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.contact-form button {
+    align-self: flex-start;
+    height: 46px;
+    padding: 0 30px;
+    background: #7b9a0d;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.contact-form button:hover { background: #6a8710; }
+
+.contact-details p { margin-bottom: 10px; }
+
+.whatsapp {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 12px 26px;
+    background: #25d366;
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.footer {
+    text-align: center;
+    padding: 24px;
+    font-size: 14px;
+    color: #bbb;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ---------- SMALL SCREENS ---------- */
+@media (max-width: 900px) {
+    .navbar {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .menu {
+        flex-basis: 100%;
+        order: 3;
+    }
+    ul { gap: 18px; }
+    .content h1 { font-size: 32px; }
+    .page-title { font-size: 34px; }
+}
